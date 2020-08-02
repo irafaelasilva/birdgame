@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Bird : MonoBehaviour
 {
    private Vector3 _initialPosition;
-   private bool _birdWasLauched;
+   private bool _birdWasLaunched;
    private float _timeSittingAround;
 
    [SerializeField] private float _launchPower = 300;
@@ -18,14 +18,14 @@ public class Bird : MonoBehaviour
     private void Update()
     {
 
-        if (_birdWasLauched && GetComponent<Rigidibody2D>().velocity.magnitude <= 0.1)
+        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1)
         {
             _timeSittingAround += Time.deltaTime;
         }
         if (transform.position.y > 10 ||
             transform.position.y < -10 ||
-            transform.position.X > 10 ||
-            transform.position.X < -10 || _timeSittingAround > 3)
+            transform.position.x > 10 ||
+            transform.position.x < -10 || _timeSittingAround > 3)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);

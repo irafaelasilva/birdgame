@@ -23,11 +23,11 @@ public class Bird : MonoBehaviour
         {
             _timeSittingAround += Time.deltaTime;
         }
-        if (transform.position.y > 10 ||
-            transform.position.y < -10 ||
-            transform.position.x > 10 ||
-            transform.position.x < -10 ||
-            _timeSittingAround > 3)
+        if (!(transform.position.y <= 13 &&
+            transform.position.y >= -13 &&
+            transform.position.x <= 13 &&
+            transform.position.x >= -13 &&
+            _timeSittingAround <= 3))
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);

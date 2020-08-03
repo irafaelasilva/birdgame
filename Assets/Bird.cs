@@ -18,14 +18,16 @@ public class Bird : MonoBehaviour
     private void Update()
     {
 
-        if (_birdWasLaunched && GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1)
+        if ( _birdWasLaunched &&
+            GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1)
         {
             _timeSittingAround += Time.deltaTime;
         }
         if (transform.position.y > 10 ||
             transform.position.y < -10 ||
             transform.position.x > 10 ||
-            transform.position.x < -10 || _timeSittingAround > 3)
+            transform.position.x < -10 ||
+            _timeSittingAround > 3)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
@@ -46,9 +48,11 @@ public class Bird : MonoBehaviour
 
         GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * _launchPower);
         GetComponent<Rigidbody2D>().gravityScale = 1;
-   }
+        _birdWasLaunched = true;
 
-    private void OnMouseDrag()
+}
+
+private void OnMouseDrag()
     {
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(newPosition.x, newPosition.y);
